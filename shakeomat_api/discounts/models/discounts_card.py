@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 
 from shakeomat_api.discounts.models._abstract import BaseModel
+from django.utils.translation import gettext_lazy as _
 
 
 class DiscountCard(BaseModel):
@@ -12,15 +13,16 @@ class DiscountCard(BaseModel):
     )
     card_number = models.IntegerField(
         unique=True,
-        verbose_name="Numer Karty"
+        verbose_name=_("Numer Karty")
     )
     phone_number = models.IntegerField(
-        verbose_name="Numer telefonu"
+        unique=True,
+        verbose_name=_("Numer telefonu")
     )
     is_active = models.BooleanField(
-        verbose_name="Czy Aktywny",
+        verbose_name=_("Czy Aktywny"),
         default=True
     )
 
     class Meta:
-        verbose_name = "Karta Klienta"
+        verbose_name = _("Karta Klienta")
