@@ -1,6 +1,13 @@
 from .base import *  # noqa
 from .base import env
 
+# override base database settings
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ROOT_DIR / "db.sqlite3",
+    },
+}
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug

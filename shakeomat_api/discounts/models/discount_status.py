@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth import get_user_model
 import uuid
 
 from shakeomat_api.discounts.models._abstract import BaseModel
@@ -7,7 +7,7 @@ from shakeomat_api.discounts.models._helpers import DISCOUNTS_STATUS, OPTIONAL
 from shakeomat_api.discounts.models.discount_coupon import DiscountCoupon
 from django.utils.translation import gettext_lazy as _
 
-
+User = get_user_model()
 
 class DiscountStatus(BaseModel):
     id = models.UUIDField(

@@ -6,7 +6,7 @@ import uuid
 from shakeomat_api.discounts.models._abstract import BaseModel
 from shakeomat_api.discounts.models._helpers import OPTIONAL, get_end_of_today
 from shakeomat_api.discounts.models._helpers import discount_image_path
-from shakeomat_api.discounts.models.discounts_card import DiscountCard
+from shakeomat_api.discounts.models.discount_card import DiscountCard
 from django.utils.translation import gettext_lazy as _
 
 
