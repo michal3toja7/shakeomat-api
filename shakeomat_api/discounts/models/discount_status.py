@@ -45,4 +45,4 @@ class DiscountStatus(BaseModel):
 
     class Meta:
         verbose_name = _("Status zniżki")
-        verbose_name_plural = _("Status zniżki")
+        verbose_name_plural = _("Statusy zniżek")

@@ -44,3 +44,4 @@ class DiscountCoupon(BaseModel):
 
     class Meta:
         verbose_name = _("Kupon Zniżkowy")
+        verbose_name_plural = _("Kupony Zniżkowe")

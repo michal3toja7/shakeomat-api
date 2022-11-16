@@ -26,3 +26,4 @@ class DiscountCard(BaseModel):
 
     class Meta:
         verbose_name = _("Karta Klienta")
+        verbose_name_plural = _("Karty Klientów")
