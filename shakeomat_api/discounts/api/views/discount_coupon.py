@@ -13,4 +13,4 @@ class DiscountCouponViewSet(RetrieveModelMixin, ListModelMixin,
                           UpdateModelMixin,
                           GenericViewSet):
     serializer_class = DiscountCouponSerializer
-    queryset = DiscountCoupon
+    queryset = DiscountCoupon.objects.all()

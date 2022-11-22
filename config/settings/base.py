@@ -77,6 +77,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "drf_spectacular"
 ]
 
 LOCAL_APPS = [
@@ -278,3 +279,17 @@ SOCIALACCOUNT_FORMS = {"signup": "shakeomat_api.users.forms.UserSocialSignupForm
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Shakeomat-API",
+    "DESCRIPTION": "Awesome discount code app",
+    "VERSION": "0.0.1",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+
+    # OTHER SETTINGS
+}

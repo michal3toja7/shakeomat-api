@@ -6,4 +6,4 @@ from shakeomat_api.discounts.models import DiscountStatus
 class DiscountStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = DiscountStatus
-        fields = ["__all__"]
+        fields = "__all__"

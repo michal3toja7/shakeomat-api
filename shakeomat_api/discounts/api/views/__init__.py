@@ -1,8 +1,8 @@
-from shakeomat_api.discounts.api.views.descount_card import DiscountCardViewSet
-from shakeomat_api.discounts.api.views.descount_coupon import (
+from shakeomat_api.discounts.api.views.discount_card import DiscountCardViewSet
+from shakeomat_api.discounts.api.views.discount_coupon import (
     DiscountCouponViewSet
 )
-from shakeomat_api.discounts.api.views.descount_status import (
+from shakeomat_api.discounts.api.views.discount_status import (
     DiscountStatusViewSet
 )
 

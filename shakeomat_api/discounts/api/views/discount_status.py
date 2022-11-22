@@ -13,4 +13,4 @@ class DiscountStatusViewSet(RetrieveModelMixin, ListModelMixin,
                             UpdateModelMixin,
                             GenericViewSet):
     serializer_class = DiscountStatusSerializer
-    queryset = DiscountStatus
+    queryset = DiscountStatus.objects.all()

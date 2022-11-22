@@ -13,4 +13,4 @@ class DiscountCardViewSet(RetrieveModelMixin, ListModelMixin,
                           UpdateModelMixin,
                           GenericViewSet):
     serializer_class = DiscountCardSerializer
-    queryset = DiscountCard
+    queryset = DiscountCard.objects.all()
