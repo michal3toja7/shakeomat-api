@@ -6,4 +6,7 @@ from shakeomat_api.discounts.models import DiscountCard
 class DiscountCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = DiscountCard
-        fields = "__all__"
+        fields = [
+            "card_number",
+            "phone_number",
+        ]

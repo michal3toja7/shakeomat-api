@@ -1,5 +1,6 @@
 from rest_framework.mixins import (
     ListModelMixin,
+    CreateModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin
 )
@@ -9,7 +10,9 @@ from ..serializers import DiscountCardSerializer
 from ...models import DiscountCard
 
 
-class DiscountCardViewSet(RetrieveModelMixin, ListModelMixin,
+class DiscountCardViewSet(RetrieveModelMixin,
+                          ListModelMixin,
+                          CreateModelMixin,
                           UpdateModelMixin,
                           GenericViewSet):
     serializer_class = DiscountCardSerializer
