@@ -1,3 +1,4 @@
+from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.mixins import RetrieveModelMixin
@@ -11,7 +12,14 @@ from ...models import DiscountCoupon
 class DiscountCouponViewSet(RetrieveModelMixin,
                             ListModelMixin,
                             CreateModelMixin,
-                            UpdateModelMixin,
                             GenericViewSet):
     serializer_class = DiscountCouponSerializer
     queryset = DiscountCoupon.objects.all()
+
+    @action(detail=True, methods=['post'])
+    def make_reservation(self, request, pk=None):
+        pass
+
+    @action(detail=True, methods=['post'])
+    def use_up(self, request, pk=None):
+        pass
