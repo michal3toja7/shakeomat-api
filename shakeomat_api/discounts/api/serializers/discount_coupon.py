@@ -39,16 +39,22 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        if validated_data.get("phone_number"):
-            validated_data["discount_card"] = DiscountCard.objects.get(
-                phone_number=validated_data.pop("phone_number")
+        try:
+            if validated_data.get("phone_number"):
+                validated_data.pop("card_number", None)
+                validated_data["discount_card"] = DiscountCard.objects.get(
+                    phone_number=validated_data.pop("phone_number")
+                )
+            elif validated_data.get("card_number"):
+                validated_data["discount_card"] = DiscountCard.objects.get(
+                    card_number=validated_data.pop("card_number")
+                )
+            else:
+                raise serializers.ValidationError(
+                    "Customer card details have not been provided")
+        except DiscountCard.DoesNotExist:
+            raise serializers.ValidationError(
+                "Incorrect phone number or customer card number"
             )
-        elif validated_data.get("card_number"):
-            validated_data["discount_card"] = DiscountCard.objects.get(
-                card_number=validated_data.pop("card_number")
-            )
-        else:
-            #ToDo Finish this
-            raise
 
         return super().create(validated_data)
