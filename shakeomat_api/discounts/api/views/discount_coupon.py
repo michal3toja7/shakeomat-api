@@ -14,7 +14,7 @@ class DiscountCouponViewSet(RetrieveModelMixin,
                             CreateModelMixin,
                             GenericViewSet):
     serializer_class = DiscountCouponSerializer
-    queryset = DiscountCoupon.objects.all()
+    queryset = DiscountCoupon.objects.get_active()
 
     @action(detail=True, methods=['post'])
     def make_reservation(self, request, pk=None):

@@ -10,6 +10,14 @@ from shakeomat_api.discounts.models.discount_card import DiscountCard
 from django.utils.translation import gettext_lazy as _
 
 
+class DiscountCouponManager(models.Manager):
+
+    def get_active(self):
+        qs = self.get_queryset()
+        return qs.filter(start_validity_period__lte=datetime.now(),
+                         end_validity_period__gte=datetime.now())
+
+
 class DiscountCoupon(BaseModel):
     id = models.UUIDField(
         primary_key=True,
@@ -41,6 +49,8 @@ class DiscountCoupon(BaseModel):
         default=get_end_of_today,
         verbose_name=_("Koniec obowiązywania")
     )
+
+    objects = DiscountCouponManager()
 
     class Meta:
         verbose_name = _("Kupon Zniżkowy")
