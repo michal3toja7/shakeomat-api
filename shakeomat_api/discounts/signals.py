@@ -12,5 +12,6 @@ def create_status(sender, instance: DiscountCoupon, created, **kwargs):
     created. It creates a statis object related to the one-to-one
     relationship with the DiscountCoupon.
     """
+    print("Co do chuja?")
     if created:
         DiscountStatus.objects.create(discount_coupon=instance)
