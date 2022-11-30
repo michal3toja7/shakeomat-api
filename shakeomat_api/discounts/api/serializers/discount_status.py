@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from shakeomat_api.discounts.models import DiscountStatus
-from shakeomat_api.users.api.serializers import UserSerializer
+from shakeomat_api.users.api.serializers import UserShortSerializer
 
 
 class DiscountStatusSerializer(serializers.ModelSerializer):
@@ -11,8 +11,8 @@ class DiscountStatusSerializer(serializers.ModelSerializer):
 
 
 class DiscountStatusShortSerializer(DiscountStatusSerializer):
-    reserved_by = UserSerializer(many=False)
-    used_by = UserSerializer(many=False)
+    reserved_by = serializers.CharField(read_only=True)
+    used_by = serializers.CharField(read_only=True)
 
     class Meta:
         model = DiscountStatus

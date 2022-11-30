@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 
-from rest_framework.decorators import action
-
 from shakeomat_api.discounts.api.serializers.discount_card import \
     DiscountCardSerializer
 from shakeomat_api.discounts.api.serializers.discount_status import \
@@ -12,8 +10,7 @@ from shakeomat_api.discounts.models import DiscountCoupon, DiscountCard
 
 class DiscountCouponSerializer(serializers.ModelSerializer):
     discount_card = DiscountCardSerializer(many=False, read_only=True)
-    discount_status = DiscountStatusShortSerializer(many=False,
-                                                    read_only=True)
+    status = DiscountStatusShortSerializer(many=False, read_only=True)
     phone_number = serializers.IntegerField(
         write_only=True,
         required=False,
@@ -27,9 +24,10 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
     class Meta:
         model = DiscountCoupon
         fields = [
+            "id",
+            "status",
             "phone_number",
             "card_number",
-            "discount_status",
             "discount_image",
             "discount_title",
             "discount_description",
@@ -58,3 +56,19 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
             )
 
         return super().create(validated_data)
+
+    def make_reservation(self, discount_coupon: DiscountCoupon):
+        try:
+            if discount_coupon.status.reserve(self.context["request"].user):
+                return self.data
+        except AttributeError:
+            pass
+        raise serializers.ValidationError("The coupon is already reserved")
+
+    def use(self, discount_coupon: DiscountCoupon):
+        try:
+            if discount_coupon.status.use(self.context["request"].user):
+                return self.data
+        except AttributeError:
+            pass
+        raise serializers.ValidationError("The coupon is already used")
