@@ -17,6 +17,14 @@ class DiscountCouponManager(models.Manager):
         return qs.filter(start_validity_period__lte=datetime.now(),
                          end_validity_period__gte=datetime.now())
 
+    def get_public(self):
+        return self.get_active().filter(is_public=True)
+
+    def get_limited_for_group(self, user):
+        qs = self.get_active()
+
+        return qs.filter()
+
 
 class DiscountCoupon(BaseModel):
     id = models.UUIDField(

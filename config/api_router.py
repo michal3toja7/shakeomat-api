@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter, SimpleRouter
 
 from shakeomat_api.users.api.views import UserViewSet
 from shakeomat_api.discounts.api.views import DiscountCouponViewSet
+from shakeomat_api.discounts.api.views import DiscountCouponPublicViewSet
 from shakeomat_api.discounts.api.views import DiscountStatusViewSet
 from shakeomat_api.discounts.api.views import DiscountCardViewSet
 
@@ -13,6 +14,7 @@ else:
 
 router.register("users", UserViewSet)
 router.register("discount-coupon", DiscountCouponViewSet)
+router.register("discount-public-coupon", DiscountCouponPublicViewSet)
 router.register("discount-status", DiscountStatusViewSet)
 router.register("client-card", DiscountCardViewSet)
 

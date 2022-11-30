@@ -7,14 +7,15 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
-class DiscountCardGroups(models.Model):
+class DiscountCardGroup(models.Model):
     name = models.CharField(
         max_length=200
     )
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name=_("Właściciel grupy")
+        verbose_name=_("Właściciel grupy"),
+        related_name="owner"
     )
     users = models.ManyToManyField(
         User,

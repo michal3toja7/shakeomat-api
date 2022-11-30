@@ -9,12 +9,12 @@ from ..serializers import DiscountCouponSerializer
 from ...models import DiscountCoupon
 
 
-class DiscountCouponViewSet(RetrieveModelMixin,
-                            ListModelMixin,
-                            CreateModelMixin,
-                            GenericViewSet):
+class DiscountCouponPublicViewSet(RetrieveModelMixin,
+                                  ListModelMixin,
+                                  CreateModelMixin,
+                                  GenericViewSet):
     serializer_class = DiscountCouponSerializer
-    queryset = DiscountCoupon.objects.get_active()
+    queryset = DiscountCoupon.objects.get_public()
 
     @action(detail=True, methods=['post'])
     def make_reservation(self, request, pk=None):
@@ -27,3 +27,8 @@ class DiscountCouponViewSet(RetrieveModelMixin,
         instance: DiscountCoupon = self.get_object()
         serializer = self.get_serializer(instance)
         return Response(serializer.use(instance))
+
+
+class DiscountCouponViewSet(DiscountCouponPublicViewSet):
+    def get_queryset(self):
+        return DiscountCoupon.objects.get_limited_for_group(self.request.user)
