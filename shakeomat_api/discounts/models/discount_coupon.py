@@ -49,6 +49,9 @@ class DiscountCoupon(BaseModel):
         default=get_end_of_today,
         verbose_name=_("Koniec obowiązywania")
     )
+    is_public = models.BooleanField(
+        default=False
+    )
 
     objects = DiscountCouponManager()
 
