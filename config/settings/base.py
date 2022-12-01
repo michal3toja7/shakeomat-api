@@ -78,7 +78,8 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "drf_spectacular"
+    "drf_spectacular",
+    "rest_framework_api_key"
 ]
 
 LOCAL_APPS = [
@@ -124,8 +125,10 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # MIDDLEWARE
@@ -245,7 +248,7 @@ LOGGING = {
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
+                      "%(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
@@ -258,10 +261,10 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION",
+                                      False)
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
@@ -275,8 +278,8 @@ ACCOUNT_FORMS = {"signup": "shakeomat_api.users.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "shakeomat_api.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "shakeomat_api.users.forms.UserSocialSignupForm"}
-
+SOCIALACCOUNT_FORMS = {
+    "signup": "shakeomat_api.users.forms.UserSocialSignupForm"}
 
 # JWT
 # -----------------------------------------------------------------------------
@@ -302,7 +305,7 @@ REST_FRAMEWORK = {
     ),
     "PAGE_SIZE": 100,
 }
-
+API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Shakeomat-API",
