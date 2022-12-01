@@ -22,7 +22,8 @@ class DiscountCouponManager(models.Manager):
 
     def get_limited_for_group(self, user):
         qs = self.get_active()
-        return qs.filter(is_public=False)
+        return qs.filter(is_public=False,
+                         discount_card__card_group__in=user.card_group.all())
 
 
 class DiscountCoupon(BaseModel):

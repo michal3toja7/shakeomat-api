@@ -20,12 +20,14 @@ class DiscountCardGroup(models.Model):
     users = models.ManyToManyField(
         User,
         blank=True,
-        verbose_name=_("Członkowie grupy")
+        verbose_name=_("Członkowie grupy"),
+        related_name="card_group"
     )
     discount_cards = models.ManyToManyField(
         DiscountCard,
         blank=True,
-        verbose_name=_("Karty klienta")
+        verbose_name=_("Karty klienta"),
+        related_name="card_group"
     )
 
     def __str__(self):
