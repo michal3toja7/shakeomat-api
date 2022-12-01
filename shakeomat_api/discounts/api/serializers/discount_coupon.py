@@ -34,6 +34,7 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
             "start_validity_period",
             "end_validity_period",
             "discount_card",
+            "is_public",
         ]
 
     def create(self, validated_data):
@@ -72,3 +73,9 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
         except AttributeError:
             pass
         raise serializers.ValidationError("The coupon is already used")
+
+    def set_public(self, discount_coupon: DiscountCoupon):
+        if discount_coupon.is_public:
+            return self.data
+        discount_coupon.set_public()
+        return self.data

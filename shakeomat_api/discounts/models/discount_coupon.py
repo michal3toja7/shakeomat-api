@@ -22,8 +22,7 @@ class DiscountCouponManager(models.Manager):
 
     def get_limited_for_group(self, user):
         qs = self.get_active()
-
-        return qs.filter()
+        return qs.filter(is_public=False)
 
 
 class DiscountCoupon(BaseModel):
@@ -60,6 +59,10 @@ class DiscountCoupon(BaseModel):
     is_public = models.BooleanField(
         default=False
     )
+
+    def set_public(self):
+        self.is_public = True
+        self.save()
 
     objects = DiscountCouponManager()
 

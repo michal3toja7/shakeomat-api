@@ -32,3 +32,9 @@ class DiscountCouponPublicViewSet(RetrieveModelMixin,
 class DiscountCouponViewSet(DiscountCouponPublicViewSet):
     def get_queryset(self):
         return DiscountCoupon.objects.get_limited_for_group(self.request.user)
+
+    @action(detail=True, methods=['post'])
+    def set_public(self, request, pk=None):
+        instance: DiscountCoupon = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.set_public(instance))
