@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 OPTIONAL = dict(blank=True, null=True)
 
 
-def discount_image_path(instance, filename):
+def coupon_image_path(instance, filename):
     return (
         f"{instance.discount_card.id}"
         f"/{instance.id}{get_extension(filename)}"

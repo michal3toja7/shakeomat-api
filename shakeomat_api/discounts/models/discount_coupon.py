@@ -5,7 +5,7 @@ import uuid
 
 from shakeomat_api.discounts.models._abstract import BaseModel
 from shakeomat_api.discounts.models._helpers import OPTIONAL, get_end_of_today
-from shakeomat_api.discounts.models._helpers import discount_image_path
+from shakeomat_api.discounts.models._helpers import coupon_image_path
 from shakeomat_api.discounts.models.discount_card import DiscountCard
 from django.utils.translation import gettext_lazy as _
 
@@ -37,7 +37,7 @@ class DiscountCoupon(BaseModel):
         on_delete=models.CASCADE
     )
     discount_image = models.FileField(
-        upload_to=discount_image_path,
+        upload_to=coupon_image_path,
         verbose_name=_("discount_image")
     )
     discount_title = models.CharField(
