@@ -36,8 +36,8 @@ class DiscountCoupon(BaseModel):
         on_delete=models.CASCADE
     )
     discount_image = models.FileField(
-        **OPTIONAL, upload_to=discount_image_path,
-        verbose_name=_("discound_image")
+        upload_to=discount_image_path,
+        verbose_name=_("discount_image")
     )
     discount_title = models.CharField(
         **OPTIONAL,
