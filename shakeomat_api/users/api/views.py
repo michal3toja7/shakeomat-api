@@ -12,7 +12,7 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
-class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin,
+class UserViewSet(RetrieveModelMixin,
                   GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()

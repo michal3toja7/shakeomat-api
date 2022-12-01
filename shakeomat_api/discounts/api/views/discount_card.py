@@ -10,8 +10,6 @@ from ...models import DiscountCard
 
 class DiscountCardViewSet(RetrieveModelMixin,
                           ListModelMixin,
-                          CreateModelMixin,
-                          UpdateModelMixin,
                           GenericViewSet):
     serializer_class = DiscountCardSerializer
     queryset = DiscountCard.objects.all()

@@ -11,8 +11,6 @@ from ...models import DiscountStatus
 
 class DiscountStatusViewSet(RetrieveModelMixin,
                             ListModelMixin,
-                            CreateModelMixin,
-                            UpdateModelMixin,
                             GenericViewSet):
     serializer_class = DiscountStatusSerializer
     queryset = DiscountStatus.objects.all()
