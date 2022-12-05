@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "allauth",
+    "corsheaders",
     "allauth.account",
     "allauth.socialaccount",
     "drf_spectacular",
@@ -136,6 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -316,3 +318,14 @@ SPECTACULAR_SETTINGS = {
 
     # OTHER SETTINGS
 }
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:8000",
+    "http://localhost:3000",
+    "http://localhost",
+)
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+    "x-api-key",
+]
