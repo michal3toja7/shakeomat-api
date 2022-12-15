@@ -65,6 +65,13 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
         except AttributeError:
             pass
         raise serializers.ValidationError("The coupon is already reserved")
+    def undo_reservation(self, discount_coupon: DiscountCoupon):
+        try:
+            if discount_coupon.status.undo_reserve():
+                return self.data
+        except AttributeError:
+            pass
+        raise serializers.ValidationError("The coupon is already reserved")
 
     def use(self, discount_coupon: DiscountCoupon):
         try:

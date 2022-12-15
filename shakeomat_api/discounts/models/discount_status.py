@@ -54,6 +54,13 @@ class DiscountStatus(BaseModel):
         self.reserved_by = user
         self.save()
         return True
+    def undo_reserve(self) -> bool:
+        if self.status in {NEW}:
+            return False
+        self.status = NEW
+        self.reserved_by = None
+        self.save()
+        return True
 
     def use(self, user: User) -> bool:
         if self.status == USED:

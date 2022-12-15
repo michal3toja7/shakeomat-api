@@ -4,7 +4,8 @@ from django.db import models
 import uuid
 
 from shakeomat_api.discounts.models._abstract import BaseModel
-from shakeomat_api.discounts.models._helpers import OPTIONAL, get_end_of_today
+from shakeomat_api.discounts.models._helpers import OPTIONAL, get_end_of_today, \
+    RESERVED
 from shakeomat_api.discounts.models._helpers import coupon_image_path
 from shakeomat_api.discounts.models.discount_card import DiscountCard
 from django.utils.translation import gettext_lazy as _
@@ -24,6 +25,10 @@ class DiscountCouponManager(models.Manager):
         qs = self.get_active()
         return qs.filter(is_public=False,
                          discount_card__card_group__in=user.card_group.all())
+
+    def get_reserved_by_user(self, user):
+        qs = self.get_active()
+        return qs.filter(status__status=RESERVED, status__reserved_by=user)
 
 
 class DiscountCoupon(BaseModel):

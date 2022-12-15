@@ -46,6 +46,18 @@ class DiscountCouponViewSet(RetrieveModelMixin,
     def get_queryset(self):
         return DiscountCoupon.objects.get_limited_for_group(self.request.user)
 
+class DiscountCouponReservedViewSet(RetrieveModelMixin,
+                            ListModelMixin,
+                            AbstractDiscountCouponViewSet):
+
+    def get_queryset(self):
+        return DiscountCoupon.objects.get_reserved_by_user(self.request.user)
+
+    @action(detail=True, methods=['post'])
+    def undo_reservation(self, request, pk=None):
+        instance: DiscountCoupon = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.undo_reservation(instance))
 
 class DiscountCouponCreateViewSet(CreateModelMixin, GenericViewSet):
     serializer_class = DiscountCouponSerializer
