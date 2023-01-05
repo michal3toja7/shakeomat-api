@@ -19,3 +19,4 @@ opencv-python==4.7.0.68
 numpy==1.24.1
 django-cors-headers==3.13.0 # https://pypi.org/project/django-cors-headers/
 drf-spectacular==0.25.1
+opencv-python==4.7.0.68
