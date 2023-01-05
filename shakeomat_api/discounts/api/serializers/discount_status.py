@@ -16,8 +16,4 @@ class DiscountStatusShortSerializer(DiscountStatusSerializer):
 
     class Meta:
         model = DiscountStatus
-        fields = [
-            "status",
-            "reserved_by",
-            "used_by"
-        ]
+        fields = ["status", "reserved_by", "used_by"]

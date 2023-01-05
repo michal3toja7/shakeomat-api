@@ -1,10 +1,13 @@
 from django.contrib import admin
 
-from shakeomat_api.discounts.models import DiscountCoupon
-from shakeomat_api.discounts.models import DiscountCard
-from shakeomat_api.discounts.models import DiscountStatus
-from shakeomat_api.discounts.models.discount_card_group import \
-    DiscountCardGroup
+from shakeomat_api.discounts.models import (
+    DiscountCard,
+    DiscountCoupon,
+    DiscountStatus,
+)
+from shakeomat_api.discounts.models.discount_card_group import (
+    DiscountCardGroup,
+)
 
 
 class DiscountStatusInlineAdmin(admin.StackedInline):

@@ -1,15 +1,15 @@
 from shakeomat_api.discounts.api.serializers.discount_card import (
-    DiscountCardSerializer
+    DiscountCardSerializer,
 )
 from shakeomat_api.discounts.api.serializers.discount_coupon import (
-    DiscountCouponSerializer
+    DiscountCouponSerializer,
 )
 from shakeomat_api.discounts.api.serializers.discount_status import (
-    DiscountStatusSerializer
+    DiscountStatusSerializer,
 )
 
 __all__ = [
     DiscountCardSerializer,
     DiscountCouponSerializer,
-    DiscountStatusSerializer
+    DiscountStatusSerializer,
 ]

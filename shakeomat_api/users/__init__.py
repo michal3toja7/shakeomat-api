@@ -1,1 +1,1 @@
-default_app_config = 'shakeomat_api.users.apps.UsersConfig'
+default_app_config = "shakeomat_api.users.apps.UsersConfig"

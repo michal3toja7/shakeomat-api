@@ -1,35 +1,32 @@
-from django.db import models
-from django.contrib.auth import get_user_model
 import uuid
 
-from shakeomat_api.discounts.models._abstract import BaseModel
-from shakeomat_api.discounts.models._helpers import DISCOUNTS_STATUS
-from shakeomat_api.discounts.models._helpers import RESERVED
-from shakeomat_api.discounts.models._helpers import USED
-from shakeomat_api.discounts.models._helpers import OPTIONAL
-from shakeomat_api.discounts.models._helpers import NEW
-from shakeomat_api.discounts.models.discount_coupon import DiscountCoupon
+from django.contrib.auth import get_user_model
+from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from shakeomat_api.discounts.models._abstract import BaseModel
+from shakeomat_api.discounts.models._helpers import (
+    DISCOUNTS_STATUS,
+    NEW,
+    OPTIONAL,
+    RESERVED,
+    USED,
+)
+from shakeomat_api.discounts.models.discount_coupon import DiscountCoupon
 
 User = get_user_model()
 
 
 class DiscountStatus(BaseModel):
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False
-    )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     discount_coupon = models.OneToOneField(
-        DiscountCoupon,
-        on_delete=models.CASCADE,
-        related_name="status"
+        DiscountCoupon, on_delete=models.CASCADE, related_name="status"
     )
     status = models.CharField(
         choices=DISCOUNTS_STATUS,
         verbose_name=_("Status"),
         max_length=20,
-        default=NEW
+        default=NEW,
     )
     reserved_by = models.ForeignKey(
         User,
@@ -37,7 +34,6 @@ class DiscountStatus(BaseModel):
         **OPTIONAL,
         verbose_name=_("Zarezerwowany przez"),
         related_name="reserved_by"
-
     )
     used_by = models.ForeignKey(
         User,
@@ -54,6 +50,7 @@ class DiscountStatus(BaseModel):
         self.reserved_by = user
         self.save()
         return True
+
     def undo_reserve(self) -> bool:
         if self.status in {NEW}:
             return False

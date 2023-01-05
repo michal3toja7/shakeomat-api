@@ -1,15 +1,15 @@
-from rest_framework.mixins import ListModelMixin
-from rest_framework.mixins import CreateModelMixin
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.mixins import UpdateModelMixin
+from rest_framework.mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
 from rest_framework.viewsets import GenericViewSet
 
-from ..serializers import DiscountCardSerializer
 from ...models import DiscountCard
+from ..serializers import DiscountCardSerializer
 
 
-class DiscountCardViewSet(RetrieveModelMixin,
-                          ListModelMixin,
-                          GenericViewSet):
+class DiscountCardViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
     serializer_class = DiscountCardSerializer
     queryset = DiscountCard.objects.all()

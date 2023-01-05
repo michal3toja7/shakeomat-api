@@ -1,5 +1,6 @@
 import os.path
 from datetime import datetime
+
 from django.utils.translation import gettext_lazy as _
 
 OPTIONAL = dict(blank=True, null=True)
@@ -29,6 +30,5 @@ DISCOUNTS_STATUS = (
     (NEW, _("Nowy")),
     (RESERVED, _("Zarezerwowany")),
     (USED, _("Zużyty")),
-    (EXPIRED, _("Przeterminowany"))
-
+    (EXPIRED, _("Przeterminowany")),
 )

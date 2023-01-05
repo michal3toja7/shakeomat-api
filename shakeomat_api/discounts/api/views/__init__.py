@@ -1,12 +1,12 @@
 from shakeomat_api.discounts.api.views.discount_card import DiscountCardViewSet
 from shakeomat_api.discounts.api.views.discount_coupon import (
-    DiscountCouponViewSet,
     DiscountCouponCreateViewSet,
-    DiscountCouponReservedViewSet,
     DiscountCouponPublicViewSet,
+    DiscountCouponReservedViewSet,
+    DiscountCouponViewSet,
 )
 from shakeomat_api.discounts.api.views.discount_status import (
-    DiscountStatusViewSet
+    DiscountStatusViewSet,
 )
 
 __all__ = [
@@ -15,5 +15,5 @@ __all__ = [
     DiscountCouponReservedViewSet,
     DiscountCouponViewSet,
     DiscountCouponPublicViewSet,
-    DiscountStatusViewSet
+    DiscountStatusViewSet,
 ]

@@ -1,33 +1,31 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from shakeomat_api.discounts.models.discount_card import DiscountCard
-from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
 
 class DiscountCardGroup(models.Model):
-    name = models.CharField(
-        max_length=200
-    )
+    name = models.CharField(max_length=200)
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         verbose_name=_("Właściciel grupy"),
-        related_name="owner"
+        related_name="owner",
     )
     users = models.ManyToManyField(
         User,
         blank=True,
         verbose_name=_("Członkowie grupy"),
-        related_name="card_group"
+        related_name="card_group",
     )
     discount_cards = models.ManyToManyField(
         DiscountCard,
         blank=True,
         verbose_name=_("Karty klienta"),
-        related_name="card_group"
+        related_name="card_group",
     )
 
     def __str__(self):

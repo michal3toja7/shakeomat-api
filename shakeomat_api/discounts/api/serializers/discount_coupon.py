@@ -1,11 +1,13 @@
-from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
+from rest_framework import serializers
 
-from shakeomat_api.discounts.api.serializers.discount_card import \
-    DiscountCardSerializer
-from shakeomat_api.discounts.api.serializers.discount_status import \
-    DiscountStatusShortSerializer
-from shakeomat_api.discounts.models import DiscountCoupon, DiscountCard
+from shakeomat_api.discounts.api.serializers.discount_card import (
+    DiscountCardSerializer,
+)
+from shakeomat_api.discounts.api.serializers.discount_status import (
+    DiscountStatusShortSerializer,
+)
+from shakeomat_api.discounts.models import DiscountCard, DiscountCoupon
 
 
 class DiscountCouponSerializer(serializers.ModelSerializer):
@@ -14,12 +16,15 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
     phone_number = serializers.IntegerField(
         write_only=True,
         required=False,
-        help_text=_("A field that searches for the customer's card by"
-                    " phone number")
+        help_text=_(
+            "A field that searches for the customer's card by" " phone number"
+        ),
     )
     card_number = serializers.IntegerField(
-        write_only=True, required=False,
-        help_text="A field that searches for a customer's card by card number")
+        write_only=True,
+        required=False,
+        help_text="A field that searches for a customer's card by card number",
+    )
 
     class Meta:
         model = DiscountCoupon
@@ -50,7 +55,8 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
                 )
             else:
                 raise serializers.ValidationError(
-                    "Customer card details have not been provided")
+                    "Customer card details have not been provided"
+                )
         except DiscountCard.DoesNotExist:
             raise serializers.ValidationError(
                 "Incorrect phone number or customer card number"
@@ -65,6 +71,7 @@ class DiscountCouponSerializer(serializers.ModelSerializer):
         except AttributeError:
             pass
         raise serializers.ValidationError("The coupon is already reserved")
+
     def undo_reservation(self, discount_coupon: DiscountCoupon):
         try:
             if discount_coupon.status.undo_reserve():

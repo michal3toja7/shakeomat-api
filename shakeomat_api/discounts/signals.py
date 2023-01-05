@@ -1,8 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from shakeomat_api.discounts.models import DiscountCoupon
-from shakeomat_api.discounts.models import DiscountStatus
+from shakeomat_api.discounts.models import DiscountCoupon, DiscountStatus
 from shakeomat_api.image_processing import ImageProcessing
 
 

@@ -80,7 +80,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "drf_spectacular",
-    "rest_framework_api_key"
+    "rest_framework_api_key",
 ]
 
 LOCAL_APPS = [
@@ -128,9 +128,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"
+    },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"
+    },
 ]
 
 # MIDDLEWARE
@@ -251,7 +253,7 @@ LOGGING = {
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
-                      "%(process)d %(thread)d %(message)s"
+            "%(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
@@ -266,8 +268,9 @@ LOGGING = {
 
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION",
-                                      False)
+ACCOUNT_ALLOW_REGISTRATION = env.bool(
+    "DJANGO_ACCOUNT_ALLOW_REGISTRATION", False
+)
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
@@ -282,7 +285,8 @@ ACCOUNT_FORMS = {"signup": "shakeomat_api.users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "shakeomat_api.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {
-    "signup": "shakeomat_api.users.forms.UserSocialSignupForm"}
+    "signup": "shakeomat_api.users.forms.UserSocialSignupForm"
+}
 
 # JWT
 # -----------------------------------------------------------------------------
@@ -316,7 +320,6 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "0.0.1",
     "SERVE_INCLUDE_SCHEMA": False,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
-
     # OTHER SETTINGS
 }
 CORS_ORIGIN_ALLOW_ALL = False

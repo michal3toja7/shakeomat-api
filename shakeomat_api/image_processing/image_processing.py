@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 from django.db.models.fields.files import FieldFile
 
-
 from shakeomat_api.image_processing.samples import get_samples_paths
 
 
@@ -23,9 +22,10 @@ class ImageProcessing:
             template = cv2.imread(sample.path)
             height, width, channels = self.cv_image.shape
             template = self.image_resize(template, width)
-            res = cv2.matchTemplate(self.cv_image, template,
-                                    cv2.TM_CCOEFF_NORMED)
-            threshold = .8
+            res = cv2.matchTemplate(
+                self.cv_image, template, cv2.TM_CCOEFF_NORMED
+            )
+            threshold = 0.8
             loc = np.where(res >= threshold)
             cut_place = 0
             for pt in zip(*loc[::-1]):
