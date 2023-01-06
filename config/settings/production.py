@@ -18,7 +18,7 @@ DATABASES["default"] = {
     "PASSWORD": env("DATABASE_PASSWORD"),
     "HOST": env("DATABASE_HOST"),
     "PORT": env("DATABASE_PORT")
-},
+}
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
 DATABASES["default"]["CONN_MAX_AGE"] = env.int(
