@@ -327,6 +327,7 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "http://localhost",
     env("APP_DOMAIN", default="https://shakeomat.site"),
+    env("APP_DOMAIN_WWW", default="https://www.shakeomat.site"),
 )
 CORS_ALLOW_HEADERS = [
     "authorization",
