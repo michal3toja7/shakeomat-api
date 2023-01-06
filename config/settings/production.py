@@ -12,12 +12,13 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS",
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES["default"] = {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DATABASE_NAME"),
-        "USER": env("DATABASE_USER"),
-        "PASSWORD": env("DATABASE_PASSWORD"),
-        "HOST": env("DATABASE_HOST"),
-    },
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": env("DATABASE_NAME"),
+    "USER": env("DATABASE_USER"),
+    "PASSWORD": env("DATABASE_PASSWORD"),
+    "HOST": env("DATABASE_HOST"),
+    "PORT": env("DATABASE_PORT")
+},
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
 DATABASES["default"]["CONN_MAX_AGE"] = env.int(
