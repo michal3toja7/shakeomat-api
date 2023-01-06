@@ -8,10 +8,10 @@ from shakeomat_api.discounts.models._abstract import BaseModel
 
 class DiscountCard(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    card_number = models.IntegerField(
+    card_number = models.BigIntegerField(
         unique=True, verbose_name=_("Numer Karty")
     )
-    phone_number = models.IntegerField(
+    phone_number = models.BigIntegerField(
         unique=True, verbose_name=_("Numer telefonu")
     )
     is_active = models.BooleanField(

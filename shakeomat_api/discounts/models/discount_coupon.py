@@ -1,7 +1,7 @@
 import uuid
-from datetime import datetime
 
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from shakeomat_api.discounts.models._abstract import BaseModel
@@ -18,8 +18,8 @@ class DiscountCouponManager(models.Manager):
     def get_active(self):
         qs = self.get_queryset()
         return qs.filter(
-            start_validity_period__lte=datetime.now(),
-            end_validity_period__gte=datetime.now(),
+            start_validity_period__lte=timezone.now(),
+            end_validity_period__gte=timezone.now(),
         )
 
     def get_public(self):
@@ -48,7 +48,7 @@ class DiscountCoupon(BaseModel):
     )
     discount_description = models.TextField(**OPTIONAL, verbose_name=_("Opis"))
     start_validity_period = models.DateTimeField(
-        default=datetime.now, verbose_name=_("Początek obowiązywania")
+        default=timezone.now, verbose_name=_("Początek obowiązywania")
     )
     end_validity_period = models.DateTimeField(
         default=get_end_of_today, verbose_name=_("Koniec obowiązywania")
