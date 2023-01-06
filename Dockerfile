@@ -1,7 +1,4 @@
-ARG PYTHON_VERSION=3.10-slim-bullseye
-
-# define an alias for the specfic python version used in this file.
-FROM python:${PYTHON_VERSION} as python
+FROM dkimg/opencv:4.7.0-ubuntu as python
 
 # Python build stage
 FROM python as python-build-stage
@@ -13,7 +10,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # dependencies for building Python packages
   build-essential \
   # psycopg2 dependencies
-  libpq-dev
+  libpq-dev gcc python3-dev
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
