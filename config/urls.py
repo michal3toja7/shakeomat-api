@@ -30,7 +30,7 @@ urlpatterns = [
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", include("config.api_router")),
+    path("api/", include("config.api_router", namespace='api')),
     # DRF auth token
     path(
         "api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"
