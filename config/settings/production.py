@@ -65,9 +65,10 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
     "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True
 )
 
-# MEDIA
-# ------------------------------------------------------------------------------
-
+# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = str(APPS_DIR / env("MEDIA_ROOT"),)
+# https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = f'/{env("MEDIA_URL")}/'
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
