@@ -13,7 +13,7 @@ class DiscountCardGroup(models.Model):
         User,
         on_delete=models.CASCADE,
         verbose_name=_("Właściciel grupy"),
-        related_name="owner",
+        related_name="group_owner",
     )
     users = models.ManyToManyField(
         User,

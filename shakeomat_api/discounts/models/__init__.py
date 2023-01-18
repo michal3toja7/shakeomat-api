@@ -5,6 +5,9 @@ from shakeomat_api.discounts.models._helpers import (
 from shakeomat_api.discounts.models.discount_card import DiscountCard
 from shakeomat_api.discounts.models.discount_coupon import DiscountCoupon
 from shakeomat_api.discounts.models.discount_status import DiscountStatus
+from shakeomat_api.discounts.models.discount_card_group import (
+    DiscountCardGroup
+)
 
 __all__ = [
     coupon_image_path,
@@ -12,4 +15,5 @@ __all__ = [
     DiscountCard,
     DiscountCoupon,
     DiscountStatus,
+    DiscountCardGroup,
 ]

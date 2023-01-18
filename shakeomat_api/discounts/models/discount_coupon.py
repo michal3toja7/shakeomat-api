@@ -29,7 +29,9 @@ class DiscountCouponManager(models.Manager):
         qs = self.get_active()
         return qs.filter(
             is_public=False,
-            discount_card__card_group__in=user.card_group.all(),
+            discount_card__card_group__in=(
+                user.card_group.all() | user.group_owner.all()
+            ),
         )
 
     def get_reserved_by_user(self, user):
